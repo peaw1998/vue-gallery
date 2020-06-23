@@ -1,27 +1,23 @@
 <template>
-  <div class="home">
-    <v-row v-bind:key="index" v-for="(item, index) in getAlbums">
-      <v-col>
-        <div>{{ item.title }} {{ index }}</div>
-      </v-col>
-    </v-row>
+  <div>
+    <ManagePage v-bind:items="getAlbums" />
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import ManagePage from "../components/ManagePage";
 export default {
   name: "Home",
   data: function() {
-    return {
-      page: 1,
-      pageSize: 10,
-    };
+    return {};
   },
   computed: {
     ...mapGetters(["getAlbums"]),
   },
-  components: {},
+  components: {
+    ManagePage,
+  },
   mounted: function() {
     this.fetchAlbums();
   },
@@ -30,3 +26,4 @@ export default {
   },
 };
 </script>
+<style scoped></style>
