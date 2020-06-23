@@ -12,8 +12,12 @@
           class="album-box"
           :to="{ name: 'Album', params: { albumId: item.id } }"
         >
-          <div>Album Name</div>
-          {{ item.title }}
+          <div class="cursor-none-select">
+            Album Name
+          </div>
+          <div class="cursor-none-select">
+            {{ item.title }}
+          </div>
         </router-link>
       </div>
     </div>
@@ -77,7 +81,7 @@ export default {
   text-align: center;
   width: 15em;
   height: 200px;
-  background-color: rosybrown;
+  background-color: skyblue;
   margin: 0.5em;
   border-radius: 10px;
 }
@@ -103,35 +107,39 @@ export default {
   flex-direction: row;
   justify-content: center;
 }
+.cursor-none-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
 
 @media only screen and (min-width: 1904px) {
   .size {
     width: 20em;
-    background-color: firebrick;
+    /* background-color: firebrick; */
   }
 }
 @media only screen and (min-width: 1264px) and (max-width: 1903px) {
   .size {
     width: 15em;
-    background-color: skyblue;
+    /* background-color: skyblue; */
   }
 }
 @media only screen and (min-width: 960px) and (max-width: 1263px) {
   .size {
     width: 13em;
-    background-color: darkmagenta;
+    /* background-color: darkmagenta; */
   }
 }
 @media only screen and (min-width: 600px) and (max-width: 959px) {
   .size {
     width: 15em;
-    background-color: darkblue;
+    /* background-color: darkblue; */
   }
 }
 @media only screen and (max-width: 599px) {
   .size {
     width: 28em;
-    background-color: darkcyan;
+    /* background-color: darkcyan; */
   }
 }
 </style>
