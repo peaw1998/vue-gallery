@@ -1,26 +1,38 @@
 <template>
-  <div class="title">
-    <div
-      class="size"
-      v-bind:key="index"
-      v-for="(item, index) in getPhotobyAlbumID"
-    >
-      <v-row justify="center">
-        <v-dialog class="frame-img" v-model="dialog" width="700px">
-          <template justify="center" v-slot:activator="{ on, attrs }">
-            <div v-bind="attrs" v-on="on">
-              <img class="img" v-bind:src="item.thumbnailUrl" />
-            </div>
-          </template>
+  <div>
+    <div class="title" v-if="isLoading">
+      <v-progress-circular
+        :size="50"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+    </div>
+    <div v-else class="title">
+      <div
+        class="size"
+        v-bind:key="index"
+        v-for="(item, index) in getPhotobyAlbumID"
+      >
+        <v-row justify="center">
+          <v-dialog class="frame-img" v-model="dialog" width="700px">
+            <template justify="center" v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on">
+                <img class="img" :src="item.thumbnailUrl" />
+              </div>
+            </template>
+            <v-card>
+              <v-card-actions class="photo-show">
+                <h1>{{ item.title }}</h1>
 
-          <v-card>
-            <v-card-actions class="photo-show">
-              <img class="lg-img" :src="item.url" />
-              {{ item.title }}
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-row>
+                <div class="d-flex justify-content-center">
+                  <img class="lg-img" :src="item.url" />
+                </div>
+                <!-- <img class="lg-img" :src="item.url" /> -->
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-row>
+      </div>
     </div>
   </div>
 </template>
@@ -34,9 +46,13 @@ export default {
       overlay: false,
     };
   },
+  props: {
+    isLoading: Boolean,
+  },
   computed: {
     ...mapGetters(["getPhotobyAlbumID"]),
   },
+  methods: {},
 };
 </script>
 <style scoped>
@@ -62,6 +78,12 @@ export default {
 /* .frame-img {
   width: 700px;
 } */
+.d-flex {
+  display: flex;
+}
+.justify-content-center {
+  justify-content: center;
+}
 .img {
   border-radius: 10px;
 }
